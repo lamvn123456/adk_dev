@@ -9,8 +9,13 @@ def tinhGiaiThua(i):
     """
 
     #viet o day 
-    
-    return 0
+    if i == 0:
+        return 1
+    a = 1
+
+    for n in range(1, i+1):
+        a *= n
+    return a
 
 
 def timSoChan(i):
@@ -20,15 +25,18 @@ def timSoChan(i):
     tips: % trong python se tra lai so du. e.g 1%10 = 1, 5%3 = 2
     """
     #viet o day 
-    
-    return True
+    if i % 2 == 0:
+        return True
+    else:
+        return False 
 
 def timThuVien(a, i):
     """ Tim giai nghia cua i trong thu vien a
     vi du: timThuVien({1: "so 1", 2: "so 2"}, 2) = "so 2"
     tip: a la dict(). xin voi long coi them tren mang :P
     """
-    return ""
+    
+    return a[i]
 # Intermediate
 
 def giaiMa(i):
@@ -37,16 +45,23 @@ def giaiMa(i):
         vidu giaiMa([106,107]) = 'hi', giaMa([101,113,112]) = 'con'
         tips: ord(i) se bien ki tu thanh so va chr(i) se bien so thanh ki tu
     """
-    # viet o day 
-    return ''
+    # viet o day
+    a = ""
+    for n in i:
+        a += chr(n-2)
+    return a
 
 def timAnSO(a, i):
     """viet 1 phuong trinh tra ve 1 chuoi trong chuoi a
     khi ma phat hien i dau tien trong chuoi a
     vi du: timAnSO([0,1], 0) = [], timAnSo([1,23,5,7,146,5], 5) = [1,23]
     """
-    # viet o day 
-    return []
+    # viet o day
+    
+    for n in range(len(a)):
+        if a[n] == i:
+            break
+    return a[:n]
 
 # Hard
 
@@ -54,21 +69,40 @@ def timSoChu(i,a=open("./test.txt","r")):
     """ viet 1 phuong trinh tra ve so chu cai i trong file a
         vi du: timChu(open("./test","r"), "la") = 3
     """
-    # viet o day 
-    return 0
+    t =0
+    for h in a.readlines():
+        
+        for m in h.split():
+            if (m == i):
+                
+                t+=1
+    return t
 
 def ghepChuTheoThuTu(a, b):
     """ viet 1 phuong tring tra ve tong hop cua a va b theo thu tu
     vi du: ghepChuTheoThuTu("cac", "ba") = "aabcc"
     """
-    return ""
+    t = ""
+    h = sorted(a+b)
+    for i in h:
+        t+= i
+    return t
     
 def timChu(b,c,a=open("./test.txt","r")):
     """ viet 1 phuong trinh tra ve chuoi chu bat dat dau giong b va ket thuc giong c
         vi du: timChu(open("./test","r"), "l","n") = ["lon"]
     """
-    # viet o day 
-    return []
+    # viet o day
+    import re
+    d = []
+    for i in a.readlines():
+        
+        for h in i.split():
+            m = re.search("(" + b + "[a-z]*" + c + ")" , h)
+            
+            if (m != None and m. group() not in d):
+                d.append(m.group())
+    return d
 
 class Unittest(object):
     '''class for testing not to be touched'''
@@ -138,7 +172,7 @@ class Unittest(object):
     def testGhepChuTheoThuTu():
         try:
             dapAn = ghepChuTheoThuTu("toi la toi", "toi") # dap an from tinh giai thua
-            if dapAn == "  alootttiii": # dap an chinh xac. checked alphabet again xD 
+            if dapAn == "  aiiilooottt": # dap an chinh xac. checked alphabet again xD 
                 print("testGhepChuTheoThuTu: Dap an la chinh xac")
             else: # dap an sai
                 print("testGhepChuTheoThuTu: dap an sai. Xinh lam lai")
@@ -153,7 +187,7 @@ class Unittest(object):
             else: # dap an sai
                 print("testTimChu: dap an sai. Xinh lam lai")
         except Exception as err: # catch error 
-            print("testTimChu: Phuong trinh dung khong dung")
+            print("testTimChu: Phuong trinh dung khong dung"+repr(err))
 # function main
 
 if __name__ == "__main__":
