@@ -118,13 +118,14 @@ class Unittest(object):
             print("testGiaiMa: Phuong trinh dung khong dung")
     def testTimAnSo():
         try:
-            dapAn = timAnSo([111,119,112,101,106,107,103,117], 101) # dap an from tinh giai thua
+            dapAn = timAnSO([111,119,112,101,106,107,103,117], 101) # dap an from tinh giai thua
             if dapAn == [111,119,112]: # dap an chinh xac 
                 print("testTimAnSo: Dap an la chinh xac")
             else: # dap an sai
                 print("testTimAnSo: dap an sai. Xinh lam lai")
         except Exception as err: # catch error 
             print("testTimAnSo: Phuong trinh dung khong dung")
+            
     def testTimSoChu():
         try:
             dapAn = timSoChu("toi") # dap an from tinh giai thua
